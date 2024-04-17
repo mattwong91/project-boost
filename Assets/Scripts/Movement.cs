@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+  // SECTION PARAMETERS
   [SerializeField] float mainThrust = 1000f;
   [SerializeField] float rotationThrust = 1f;
+  [SerializeField] AudioClip mainEngine;
+
+  // SECTION CACHE
   Rigidbody rb;
   AudioSource audioSource;
 
@@ -25,7 +29,7 @@ public class Movement : MonoBehaviour
     {
       if (!audioSource.isPlaying)
       {
-        audioSource.Play();
+        audioSource.PlayOneShot(mainEngine);
       }
       rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
     }
