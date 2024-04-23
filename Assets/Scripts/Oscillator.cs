@@ -16,7 +16,9 @@ public class Oscillator : MonoBehaviour
 
   void Update()
   {
+    if (period <= Mathf.Epsilon) { return; } // avoid comparing floating points to 0. Eliminate NaN error at 0
     float cycles = Time.time / period; // continuously growing over time
+
     const float tau = Mathf.PI * 2; // constant value of 6.283...
     float rawSinWave = Mathf.Sin(cycles * tau); // going from -1 to 1
 
